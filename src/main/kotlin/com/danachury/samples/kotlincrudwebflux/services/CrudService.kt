@@ -8,7 +8,7 @@ interface CrudService<T> {
 
     fun read(): Mono<List<T>>
 
-    fun update(t: T): Mono<T>
+    fun <I> update(id: I, t: T): Mono<T>
 
     fun delete(id: Long): Mono<Boolean>
 }

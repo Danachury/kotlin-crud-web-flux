@@ -10,11 +10,11 @@ class Query {
 
         @Contract(pure = true)
         fun selectFrom(tableName: String) =
-            "$SELECT $tableName"
+            "$SELECT $tableName;"
 
         @Contract(pure = true)
         fun selectWhere(tableName: String, vararg columns: String) =
-            "${selectFrom(tableName)} ${where(arrayOf(*columns))}"
+            "$SELECT $tableName ${where(arrayOf(*columns))}"
 
         @Contract(pure = true)
         fun insert(tableName: String, columns: Array<String>): String {

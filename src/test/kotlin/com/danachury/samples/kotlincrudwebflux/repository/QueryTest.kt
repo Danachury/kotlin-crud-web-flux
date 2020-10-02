@@ -2,6 +2,8 @@ package com.danachury.samples.kotlincrudwebflux.repository
 
 import com.danachury.samples.kotlincrudwebflux.repository.Query.Companion.delete
 import com.danachury.samples.kotlincrudwebflux.repository.Query.Companion.insert
+import com.danachury.samples.kotlincrudwebflux.repository.Query.Companion.selectFrom
+import com.danachury.samples.kotlincrudwebflux.repository.Query.Companion.selectWhere
 import com.danachury.samples.kotlincrudwebflux.repository.Query.Companion.update
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
@@ -13,6 +15,18 @@ class QueryTest {
     internal fun shouldInitializeQuery() {
         val obj = Query()
         assertNotNull(obj)
+    }
+
+    @Test
+    internal fun shouldBuildSelectFromQuery() {
+        val selectFrom = selectFrom("shops")
+        assertEquals(selectFrom, "SELECT * FROM shops;")
+    }
+
+    @Test
+    internal fun shouldBuildSelectWhereQuery() {
+        val selectFrom = selectWhere("shops", "id", "name")
+        assertEquals(selectFrom, "SELECT * FROM shops WHERE id = ? AND name = ?;")
     }
 
     @Test

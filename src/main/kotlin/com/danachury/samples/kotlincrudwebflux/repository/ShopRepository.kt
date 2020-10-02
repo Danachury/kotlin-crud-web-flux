@@ -27,9 +27,9 @@ class ShopRepository(val pgPool: ConnectionPool<PostgreSQLConnection>) {
             .thenApply(fromQueryResult)
     }
 
-    fun update(shop: Shop): CompletableFuture<Shop> {
+    fun update(id: Long, shop: Shop): CompletableFuture<Shop> {
         val query = update(table, arrayOf(columns[1]))
-        return this.executeQuery(query, listOf(shop.name, shop.id))
+        return this.executeQuery(query, listOf(shop.name, id))
             .thenApply { shop }
     }
 

@@ -14,10 +14,9 @@ class ShopService(val shopRepository: ShopRepository) : CrudService<Shop> {
     override fun read(): Mono<List<Shop>> =
         Mono.fromFuture(this.shopRepository.read())
 
-    override fun update(t: Shop): Mono<Shop> =
-        Mono.fromFuture(this.shopRepository.update(t))
+    override fun <I> update(id: I, t: Shop): Mono<Shop> =
+        Mono.fromFuture(this.shopRepository.update(id as Long, t))
 
     override fun delete(id: Long): Mono<Boolean> =
         Mono.fromFuture(this.shopRepository.delete(id))
-
 }
