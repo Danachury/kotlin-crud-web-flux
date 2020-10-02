@@ -8,12 +8,12 @@ plugins {
     kotlin("plugin.spring") version "1.4.0"
 }
 
-group = "com.danachury.samples"
+group = "com.danachury.samples.kotlincrudwebflux"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 application {
-    mainClass.set("com.danachury.samples.kotlincrudwebflux.KotlinCrudWebFluxAppKt")
+    mainClass.set("$group.KotlinCrudWebFluxAppKt")
 }
 
 configurations {
@@ -37,10 +37,13 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.github.jasync-sql:jasync-postgresql:1.1.3")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.2")
+
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 }
 
 tasks.withType<Test> {
