@@ -1,5 +1,5 @@
 # kotlin-crud-web-flux
-CRUD with Kotlin, Spring, Reactor and Gradle
+CRUD with Kotlin, Spring, Postgresql 12.3, Reactor and Gradle
 
 #### Requirements
 * [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
@@ -34,7 +34,7 @@ CRUD with Kotlin, Spring, Reactor and Gradle
 ```
 
 #### Start Docker Compose
-**Note:** Before running next command, you need run: ``./gradlew build``
+**Note:** docker compose startup ``postgres:12.3-alpine`` image.
 ```
 docker-compose -f .ops/docker-compose.yml up --build -d
 ```
