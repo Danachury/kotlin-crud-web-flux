@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  postgres:
+    container_name: postgres
+    build:
+      context: ./postgresql
+      dockerfile: pg.Dockerfile
+    volumes:
+      - ./postgresql/pgdata:/var/lib/posgresql/data
+    ports:
+      - 5432:5432/tcp
+    environment:
+      POSTGRES_USER: kt_user
+      POSTGRES_PASSWORD: kt_pass
+      POSTGRES_DB: kt_crud
