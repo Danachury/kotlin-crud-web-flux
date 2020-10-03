@@ -3,20 +3,31 @@ package com.danachury.samples.kotlincrudwebflux.services
 import com.danachury.samples.kotlincrudwebflux.repository.ShopRepository
 import com.danachury.samples.kotlincrudwebflux.web.data.Shop
 import org.springframework.stereotype.Service
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import reactor.kotlin.core.publisher.toMono
 
 @Service
 class ShopService(val shopRepository: ShopRepository) : CrudService<Shop> {
 
     override fun create(t: Shop): Mono<Shop> =
-        Mono.fromFuture(this.shopRepository.create(t))
+        this.shopRepository
+            .create(t)
+            .toMono()
 
-    override fun read(): Mono<List<Shop>> =
-        Mono.fromFuture(this.shopRepository.read())
+    override fun read(): Flux<Shop> =
+        this.shopRepository
+            .read()
+            .toMono()
+            .flatMapMany { Flux.fromStream(it.stream()) }
 
     override fun <I> update(id: I, t: Shop): Mono<Shop> =
-        Mono.fromFuture(this.shopRepository.update(id as Long, t))
+        this.shopRepository
+            .update(id as Long, t)
+            .toMono()
 
     override fun delete(id: Long): Mono<Boolean> =
-        Mono.fromFuture(this.shopRepository.delete(id))
+        this.shopRepository
+            .delete(id)
+            .toMono()
 }

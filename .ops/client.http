@@ -11,13 +11,13 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/shops/1
+PUT http://localhost:8080/shops/0
 Content-Type: application/json
 
 {
-  "id": 3,
+  "id": 1,
   "name": "DAC Shop 3"
 }
 
 ###
-DELETE http://localhost:8080/shops/1
+DELETE http://localhost:8080/shops/0
