@@ -1,5 +1,22 @@
 version: '3.3'
 services:
+  app:
+    container_name: kcrud-app
+    build:
+      context: ../
+      dockerfile: .ops/Dockerfile
+    tty: true
+    ports:
+      - 8080:8080/tcp
+    environment:
+      JAR: kotlin-crud-web-flux-0.0.1-SNAPSHOT.jar
+      PROFILE: dev
+      JVM_XMS: "-Xms64m"
+      JVM_XMX: "-Xmx256m"
+      PORT: 8080
+    depends_on:
+      - postgres
+
   postgres:
     container_name: postgres
     build:
