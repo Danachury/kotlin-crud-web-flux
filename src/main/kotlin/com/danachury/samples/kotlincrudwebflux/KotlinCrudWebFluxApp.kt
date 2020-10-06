@@ -1,4 +1,4 @@
-    package com.danachury.samples.kotlincrudwebflux
+package com.danachury.samples.kotlincrudwebflux
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
