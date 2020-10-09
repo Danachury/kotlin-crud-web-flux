@@ -23,11 +23,11 @@ class ShopService(val shopRepository: ShopRepository) : CrudService<Shop> {
 
     override fun <I> update(id: I, t: Shop): Mono<Shop> =
         this.shopRepository
-            .update(id as Long, t)
+            .update(id as Long /* WARN: Should throw cast Exception */, t)
             .toMono()
 
-    override fun delete(id: Long): Mono<Boolean> =
+    override fun <I> delete(id: I): Mono<Boolean> =
         this.shopRepository
-            .delete(id)
+            .delete(id as Long /* WARN: Should throw cast Exception */)
             .toMono()
 }

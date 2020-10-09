@@ -11,5 +11,5 @@ interface CrudService<T> {
 
     fun <I> update(id: I, t: T): Mono<T>
 
-    fun delete(id: Long): Mono<Boolean>
+    fun <I> delete(id: I): Mono<Boolean>
 }
